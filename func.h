@@ -1,16 +1,22 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 
-//입력 데이터
+#define QUANTUMTIME 20
+#define MAXPRIORITY 31
+#define INCREASEPRIORITY 10
+#define FILENAME "input.txt"
+
+
 typedef struct _inputData {
 	int type;
 	int process_id;
-	int priority; //우선순위
+	int priority; 
 	int computing_time;
 }inputData;
 
-//출력 데이터
+
 typedef struct _process {
 	int type;
 	int process_id;
@@ -20,19 +26,19 @@ typedef struct _process {
 	int turnaround_time;
 }process;
 
-//큐 노드
+
 typedef struct _qNode {
 	process data;
 	struct _qNode* next;
 	struct _qNode* prev;
 }qNode;
 
-//큐
+
 typedef qNode* queue;
 
-#define QUANTUMTIME 20
-#define MAXPRIORITY 31
-#define INCREASEPRIORITY 10
+
+
+FILE* fp;
 
 queue createNodeByInput(inputData);
 queue createNodeByProcess(queue);
@@ -49,7 +55,7 @@ queue priorityLastQueueScheduling(queue, queue, inputData[], int*, int*, int);
 queue priorityQueueToLastQueue(queue, queue);
 queue deleteMaxPriority(queue);
 queue addToQueue(queue, queue);
-queue getLastNode(queue);
+//queue getLastNode(queue);
 void resultProcessed(queue, int, int);
 void queueHeadToTailPrint(queue);
 void queueTailToHeadPrint(queue);
